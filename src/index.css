@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.default-layout {
+  background: url(/noise2.png) rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  place-content: center;
+}
+
+.default-layout::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("/public/scape_walo.jpg");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  /*  core code */
+  filter: blur(5px);
+  transform: scale(3);
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.invert-img {
+  filter: invert(1);
+}
