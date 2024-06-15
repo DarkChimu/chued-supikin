@@ -32,7 +32,8 @@ const Metronome = React.memo(
       activeBeat,
       activeBeat !== null ? beats[activeBeat] : null,
       config.clickType,
-      isPlaying
+      isPlaying,
+      config.enableClickSound
     );
 
     useEffect(() => {

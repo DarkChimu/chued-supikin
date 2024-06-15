@@ -8,12 +8,14 @@ export default function usePlayClickSound(
   activeBeatIndex: number | null,
   level: BeatLevel | null,
   clickType: ClickType,
-  isPlaying: boolean
+  isPlaying: boolean,
+  enableClickSound: boolean
 ) {
   useEffect(() => {
     if (activeBeatIndex !== null && level !== null && isPlaying) {
+      if (!enableClickSound) return;
       if (clickType === ClickType.SYNTHETIC) synthClickService.play(level);
       else recordedClickService.play(level);
     }
-  }, [activeBeatIndex, level, isPlaying, clickType]);
+  }, [activeBeatIndex, level, isPlaying, clickType, enableClickSound]);
 }

@@ -9,6 +9,7 @@ import MetronomeConfig from "@/types/metronome-config";
 import NoteValue from "@/types/note-value";
 import { useReducer, useState, useRef, useEffect } from "react";
 import { TECHNIQUES } from "@/types/techniques-list";
+import EnableClickSound from "@/components/EnableClickSound";
 
 export default function Test() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -21,12 +22,12 @@ export default function Test() {
     noteValue: NoteValue.CROTCHET,
     clickType: ClickType.SYNTHETIC,
     currBeat: 0,
+    enableClickSound: true,
   });
 
-
-  useEffect(()=> {
+  useEffect(() => {
     lapCount.current = 0;
-  }, [isPlaying])
+  }, [isPlaying]);
 
   function getRandomIntInclusive(min: number, max: number) {
     min = Math.ceil(min);
@@ -89,6 +90,16 @@ export default function Test() {
             dispatch({ type: "setClickType", data: { clickType } })
           }
           clickType={config.clickType}
+        />
+
+        <EnableClickSound
+          clickSound={config.enableClickSound}
+          onClickSoundChanged={(enableClickSound) =>
+            dispatch({
+              type: "setEnableClickSound",
+              data: { enableClickSound },
+            })
+          }
         />
       </div>
     </div>

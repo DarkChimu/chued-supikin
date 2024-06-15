@@ -9,6 +9,7 @@ namespace MetronomeConfig {
     tempo: number;
     noteValue: NoteValue;
     clickType: ClickType;
+    enableClickSound: boolean;
     currBeat: number;
   }
 
@@ -18,7 +19,12 @@ namespace MetronomeConfig {
   export const MAX_BEAT_COUNT = 7;
 
   export interface Action {
-    type: "setTempo" | "setBeatCount" | "setNoteValue" | "setClickType";
+    type:
+      | "setTempo"
+      | "setBeatCount"
+      | "setNoteValue"
+      | "setClickType"
+      | "setEnableClickSound";
     data: Partial<Config>;
   }
 
@@ -54,6 +60,11 @@ namespace MetronomeConfig {
         if (action.data.clickType === undefined) return state;
 
         newState.clickType = action.data.clickType;
+        break;
+
+      case "setEnableClickSound":
+        if (action.data.enableClickSound === undefined) return state;
+        newState.enableClickSound = action.data.enableClickSound;
         break;
 
       default:
